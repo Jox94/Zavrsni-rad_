@@ -1,95 +1,90 @@
 <!DOCTYPE html>
 <html lang="rs">
-<head>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.png"> 
-  <title>Baza zaposlenih</title>
-  <link rel="stylesheet" href="/css/baza.css" />
-  <link rel="stylesheet" href="/css/baza_mobile.css" />
-  <link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
-</head>
-<body>
-
-  <div class="search-results">
-           <div style="text-align: center">
-            <input class="search-input" placeholder="Unesite pojam za pretragu..." type="text">
-              
-            <select class="search-input"  id="filterType" >
-            <option value="*" disabled selected>sve</option>
-            <option value="funkcija">Funkcija</option>
-            <option value="grad">Grad</option>
-            <option value="drzava">Država</option>
-               </select>
-        <i class="fa fa-plus-square"></i> 
-        <i class="fa fa-times-circle"></i>
-         </div>
-          <div id="search-filters"></div>
-     </div>
-
-<div class="topBar">
-  <div class="container">
-      <button class="sektor" value="mp" onclick="sektor(this.value), activeInactive(this)">Maloprodaja</button>
-      <button class="sektor inactive" value="dir" onclick="sektor(this.value), activeInactive(this)">Direkcija</button>
-      <i class="fa fa-search"></i>
-    <a class="admin" href="/controller/admin.php">Admin</a>
-  </div>
-</div>
-<div class="container">
-    <div id="content">
-      <h2 id="naslov">Izaberite radnu jedinicu</h2>
-      <div id="mobMenu" onclick="mobMenu()">Meni</div>
-<button class="navBtn" onclick="listanje('nazad')">PREV</button>
-<button class="navBtn" onclick="listanje('napred')">NEXT</button>
-     
-	<div id="radJedinice"></div>
-    <div id="lista"></div>
-    </div>
-</div>
-</body>
-  <script src="js/functions.js"></script>
-  <script>
-  window.onload = function(){
-      
-//Ajax history
- history();
-      
-//Naziv rad. jed.
-  var naziv = sessionStorage.getItem('nazivRadJed');
-  if(!naziv){naziv = "Izaberite radnu jedinicu";};
-  document.getElementById("naslov").innerHTML = naziv;
-}
-  
-  //Sektor tab
-  function activeInactive(element){
-           var sektor = document.getElementsByClassName('sektor');
-     for(var i=0;i < sektor.length;i++){
-       sektor[i].classList.add('inactive');
-     } 
-     
- if(element.getAttribute('class').includes('inactive')){
-        element.classList.remove('inactive');
-     }
-  }
-      
-//addFilter
-    var addFilterBtn = document.getElementsByClassName('fa-plus-square')[0]; 
-    addFilterBtn.addEventListener('click',addFilter);
-
-//Search Btns
-
-      var searchDiv = document.getElementsByClassName('search-results')[0];
-    var search = document.getElementsByClassName('fa-search')[0];
-    var searchClose = document.getElementsByClassName('fa-times-circle')[0];
-
-      search.addEventListener('click',function(){
-    searchDiv.style.animationName = "showSearch";
-})
-      searchClose.addEventListener('click',function(){
-    searchDiv.style.animationName = "hideSearch";
-})
-                
-  </script>
-
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="icon" type="image/png" sizes="16x16" href="/favicon.png">
+		<title>Baza zaposlenih</title>
+		<link rel="stylesheet" href="/css/baza.css" />
+		<link rel="stylesheet" href="/css/baza_mobile.css" />
+		<link rel="stylesheet" href="/css/font-awesome/css/font-awesome.min.css">
+	</head>
+	<body>
+		<div class="search-results">
+			<div style="text-align: center">
+				<input class="search-input" placeholder="Unesite pojam za pretragu..." type="text">
+				<select class="search-input"  id="filterType" >
+					<option value="*" disabled selected>sve</option>
+					<option value="funkcija">Funkcija</option>
+					<option value="grad">Grad</option>
+					<option value="drzava">Država</option>
+				</select>
+				<i class="fa fa-plus-square"></i> 
+				<i class="fa fa-times-circle"></i>
+			</div>
+			<div id="search-filters"></div>
+		</div>
+		<div class="topBar">
+			<div class="container">
+				<button class="sektor" value="mp" onclick="sektor(this.value), activeInactive(this)">Maloprodaja</button>
+				<button class="sektor inactive" value="dir" onclick="sektor(this.value), activeInactive(this)">Direkcija</button>
+				<i class="fa fa-search"></i>
+				<a class="admin" href="/controller/admin.php">Admin</a>
+			</div>
+		</div>
+		<div class="container">
+			<div id="content">
+				<h2 id="naslov">Izaberite radnu jedinicu</h2>
+				<div id="mobMenu" onclick="mobMenu()">Meni</div>
+				<button class="navBtn" onclick="listanje('nazad')">PREV</button>
+				<button class="navBtn" onclick="listanje('napred')">NEXT</button>
+				<div id="radJedinice"></div>
+				<div id="lista"></div>
+			</div>
+		</div>
+	</body>
+	<script src="js/functions.js"></script>
+	<script>
+		window.onload = function(){
+		    
+		//Ajax history
+		history();
+		    
+		//Naziv rad. jed.
+		var naziv = sessionStorage.getItem('nazivRadJed');
+		if(!naziv){naziv = "Izaberite radnu jedinicu";};
+		document.getElementById("naslov").innerHTML = naziv;
+		}
+		
+		//Sektor tab
+		function activeInactive(element){
+		         var sektor = document.getElementsByClassName('sektor');
+		   for(var i=0;i < sektor.length;i++){
+		     sektor[i].classList.add('inactive');
+		   } 
+		   
+		if(element.getAttribute('class').includes('inactive')){
+		      element.classList.remove('inactive');
+		   }
+		}
+		    
+		//addFilter
+		  var addFilterBtn = document.getElementsByClassName('fa-plus-square')[0]; 
+		  addFilterBtn.addEventListener('click',addFilter);
+		
+		//Search Btns
+		
+		    var searchDiv = document.getElementsByClassName('search-results')[0];
+		  var search = document.getElementsByClassName('fa-search')[0];
+		  var searchClose = document.getElementsByClassName('fa-times-circle')[0];
+		
+		    search.addEventListener('click',function(){
+		  searchDiv.style.animationName = "showSearch";
+		})
+		    searchClose.addEventListener('click',function(){
+		  searchDiv.style.animationName = "hideSearch";
+		})
+		              
+	</script>
 </html>
