@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Raspored | Baza zaposlenih</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/css/baza.css" />
+    <link rel="stylesheet" href="/css/baza_mobile.css" />
+
+    <style>
+    #sortable { list-style-type: none; margin: 20px 0 20px 0; padding: 0; width: 400px; }
+    #sortable li { margin: 0 3px 3px 3px; padding: 0.4em; padding-left: 1.5em; font-size: 1.4em; height: auto; cursor: pointer }
+    #sortable li span { position: absolute; margin-left: -1.3em; }
+    </style>
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+</head>
+<body>
+  <div class="topBar">
+	<div class="container">
+      <a href="javascript: void(0)" onclick="home()">Pregled</a>
+      <a class="admin" href="/controller/admin.php">Admin</a>
+	</div>
+  </div>
+
+  <div class="container">
+
+<select id="selectOrder"value="" onchange="reorder(this.value)">
+  <option selected disabled>Izaberite parametar</option>
+  <option value="funkcije">Funkcije</option>
+  <option value="prodavnice">Radne jedinice</option>
+  <option value="gradovi">Gradovi</option>
+  <option value="drzave">Drzave</option>
+</select>
+
+<button id='orderBtn' onclick="saveReorder()">REORDER</button>
+<ul id="sortable"></ul>
+
+</div>
+</body>
+  <script src="../js/functions.js"></script>
+  <script>
+  $( "#sortable" ).sortable();
+  $( "#sortable" ).disableSelection();
+  </script>
+
+</html>
