@@ -375,3 +375,17 @@ div#search-filters {
     width: 100%;
     vertical-align: top;
 }
+
+.read {background-color: green}
+.unread {background-color: red}
+.notifCount {
+    width: 20px !important;
+    height: 20px;
+    background-color: yellow;
+    color: black;
+    border-radius: 20px;
+    font-size: 16px;
+    display: inline-block;
+    text-align:  center;
+    vertical-align: super;
+}
