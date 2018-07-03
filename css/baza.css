@@ -4,6 +4,7 @@ html, body, ul {
   list-style: none;
   font-family: 'Arial','Helvatica',sans-serif;
   position: relative;
+  height: 100%;
 }
 a {text-decoration: none;}
 
@@ -376,6 +377,8 @@ div#search-filters {
     vertical-align: top;
 }
 
+/*NOTIFICATIONS*/
+
 .read {background-color: green}
 .unread {background-color: red}
 .notifCount {
@@ -388,4 +391,8 @@ div#search-filters {
     display: inline-block;
     text-align:  center;
     vertical-align: super;
+}
+
+.messages tr td:last-child{
+    cursor: pointer;
 }
