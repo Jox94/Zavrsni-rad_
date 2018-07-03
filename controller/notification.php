@@ -1,18 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="/css/baza.css" />
+</head>
+<body>
+	
+
 <?php
 include "functions.php";
-
-  global $conn;
-  require("connection.php");
-    
-    $SQL = "SELECT * FROM notification";
-    $result = $conn->query($SQL);
-    if ($result->num_rows > 0) {
-       echo "<ul>";
-              while($red = $result->fetch_assoc()) {
-                echo "<li> RBR:".$red[id]." | ".$red[user]." ".$red[action]." | ".$red[date];              
-              }
-        echo "</ul>";
-    }
-
-
+		
+	
+fetchNotification();
+	
+if(isset($_REQUEST['notif'])){
+	
+}
+	
 ?>
+
+
+
+
+</body>
+</html>

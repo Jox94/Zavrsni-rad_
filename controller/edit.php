@@ -1,9 +1,10 @@
+<?php include "functions.php"; ?>
 
 <div class="topBar">
   <div class="container">
     <a href="javascript: void(0)" onclick="home()">Pregled</a>
     <a href="reorder.html">Sortiranje</a>
-    <a href="notification.php">Notification</a>
+    <a href="notification.php">Notification <span><?php checkNotification(); ?></span></a>
     <a href="javascript:void(0)" id="user_logout">Odjava</a>
   </div>
 </div>
