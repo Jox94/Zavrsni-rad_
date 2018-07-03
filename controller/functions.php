@@ -218,7 +218,7 @@ function orderUpdate($raspored,$query,$id){
 }
 function checkNotification(){
 	global $conn;
-	$SQL = "SELECT COUNT(readed) AS BrojPoruka FROM notification WHERE readed = 0";
+	$SQL = "SELECT COUNT(isRead) AS BrojPoruka FROM notification WHERE isRead = 0";
 	$result = $conn->query($SQL);
 	
 	if ($result->num_rows > 0) {
@@ -235,11 +235,13 @@ function fetchNotification(){
 
     if ($result->num_rows > 0) {
 		
-       	echo "<table><thead><th>ID</th><th>Korisnik</th><th>Aktivnost</th><th>Vreme</th></thead>";
+       	echo "<table class='messages'><thead><th>ID</th><th>Korisnik</th><th>Aktivnost</th><th>Vreme</th><th>Status</th></thead>";
 		$status = "";
+        $msg = "";
               while($red = $result->fetch_assoc()) {
-				  if($red['readed']==1 ? $status="read" : $status="unread");				  
-                echo "<tr class='".$status."'><td>".$red['id']."</td><td>".$red['user']."</td><td>".$red['action']."</td><td>".$red['date']."</td></tr>";              
+				  if($red['isRead']==1 ? $status="read" AND $msg = "OK" : $status="unread" AND $msg = "Označi kao pročitano");				  
+                echo "<tr class='".$status."'><td>".$red['id']."</td><td>".$red['user']."</td><td>".$red['action']."</td><td>".$red['date']."</td>
+                <td>".$msg."</td></tr>";              
               }
 		
         echo "</table>";
@@ -251,11 +253,11 @@ function updateNotification($action){
 	$SQL = "";
 	if($action!="read" || $action!="unread"){
 		$SQL = "INSERT INTO notification (action) VALUES ('".$action."')";
+        
 	} else {
 		$SQL = "UPDATE notification (action) VALUES ('".$action."')";
 	}
 	$conn->query($SQL);
-	
 	
 }
 ?>

@@ -129,7 +129,7 @@ if(isset($_POST['noviRaspored']) && isset($_POST['parametar'])){
   orderUpdate($noviRaspored,$query,$id);
   
   $msg = "Azuriran je raspored u sekciji ".$orderParametar;
-  insertNotification($msg);
+  updateNotification($msg);
 }
 
 $conn->close();
