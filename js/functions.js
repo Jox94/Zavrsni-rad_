@@ -252,8 +252,6 @@ if(param == "nazad"){
 		rj[brojac].click();
 	}
 }
-console.log(brojac);
-
 }
 
 function addFilter() {
@@ -275,5 +273,19 @@ function removeFilter(element){
  element.parentNode.parentNode.removeChild(element.parentNode);
     }
 
-
+function readUnread(id,notif){
+	var notif = notif;
+	if(notif=="read" ? notif = 0 : notif = 1);
+	
+    var xhttp = new XMLHttpRequest();
+xhttp.onreadystatechange = function() {
+if (this.readyState == 4 && this.status == 200) {
+    notif.setAttribute('class',this.responseText); 
+}
+};
+  xhttp.open("POST", "../controller/notification.php", true);
+  xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhttp.send("notif="+notif);
+	
+}
 
